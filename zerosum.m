@@ -1,9 +1,20 @@
 function [ x, y ] = zerosum( n, m, P )
-%ZEROSUM Summary of this function goes here
+%ZEROSUM Given a prize-matrix calculates the optimal strategies.
 %   Detailed explanation goes here
 
-assert(sum ([n, m] == size(P)) == 2, 'Dimensions mismatch');
+assert(sum ([n, m] == size(P)) == 2, 'Dimensions mismatch in arguments');
 
+
+cvx_begin
+    variable x(n)
+    variable t
+    dual variable y
+    maximize(t)
+    subject to
+        y : t <= x'*P*eye(m);
+        x >= 0;
+        sum(x) == 1;
+cvx_end
 
 
 end
