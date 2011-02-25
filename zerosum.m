@@ -14,7 +14,13 @@ cvx_begin
         y : t <= x'*P*eye(m);
         x >= 0;
         sum(x) == 1;
-cvx_end
+cvx_end;
+
+disp('Player 1 should play according to:');
+disp(x);
+disp('And player 2 should play according to:');
+disp(y');
+
 
 
 end
